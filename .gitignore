@@ -1,0 +1,10 @@
+.idea/
+e2e/
+node_modules/
+karma.conf.js
+package.json
+package.lock.json
+protractor.cong.js
+README.md
+tsconfig.json
+tslint.json
