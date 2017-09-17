@@ -5,6 +5,10 @@ import {MainComponent} from '../main.component';
 import {RecordsComponent} from '../records/records.component';
 import {BlogsComponent} from '../blogs/blogs.component';
 import {AboutComponent} from '../about/about.component';
+import {CappersComponent} from "../cappers/cappers.component";
+import {MyProfileComponent} from "../my-profile/my-profile.component";
+import {MyProfileSettingsComponent} from "../my-profile-settings/my-profile-settings.component";
+import {LoginComponent} from "../../login/login.component";
 
 const routes: Routes = [
   {
@@ -13,9 +17,13 @@ const routes: Routes = [
     children: [
       { path: 'records', component: RecordsComponent},
       { path: 'blogs', component: BlogsComponent},
-      { path: 'about', component: AboutComponent}
+      { path: 'about', component: AboutComponent},
+      { path: 'cappers', component: CappersComponent},
+      { path: 'my-profile', component: MyProfileComponent},
+      { path: 'my-profile-settings', component: MyProfileSettingsComponent},
     ]
-  }
+  },
+
 ]
 
 @NgModule({

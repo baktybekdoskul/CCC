@@ -8,13 +8,19 @@ import {MainRoutingModule} from './main-routing/main-routing.module';
 import { RecordsComponent } from './records/records.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { AboutComponent } from './about/about.component';
+import { CappersComponent } from './cappers/cappers.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-settings.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     RecordsComponent,
     BlogsComponent,
-    AboutComponent
+    AboutComponent,
+    CappersComponent,
+    MyProfileComponent,
+    MyProfileSettingsComponent
   ],
   imports: [
     CommonModule,

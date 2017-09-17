@@ -1,0 +1,10 @@
+/* Your CSS codes here */
+
+.voice-active{
+	color: red;
+	font-size: 17px;
+}
+
+a{
+	cursor: pointer;
+}
