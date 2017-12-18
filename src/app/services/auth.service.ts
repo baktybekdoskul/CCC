@@ -53,8 +53,18 @@ export class AuthService {
       });
   }
   public doLogout() {
-    this.sessionService.invalidate();
-    this.router.navigate(['/login']);
+    const httpBody = {token: this.sessionService.user.token};
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({headers: headers});
+    console.log(httpBody);
+    this.http.post(this.logoutUrl, httpBody, options).subscribe((r: Response) => {},
+      err => console.log('something went wrong during the logout'),
+      () => {
+        this.sessionService.invalidate();
+        this.router.navigate(['/login']);
+      });
+
   }
 
 }
