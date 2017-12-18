@@ -3,9 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccordionModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
-import {AuthService} from "../services/auth.service";
-//import {AuthService} from "../services/auth.service";
-//import {IStudent} from "../model_interfaces/istudent.interface";
+import {AuthService} from '../services/auth.service';
+import {IUser} from '../model_interfaces/iuser.interface';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
               private _router: Router,
               private _auth: AuthService) {
     this.loginForm = this._fb.group({
-        login: ['', Validators.required],
+        email: ['', Validators.required],
         password: ['', Validators.required]
       }
     );
@@ -31,8 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   public doLoginClick(): void {
-    this._auth.checkSessionThenAuthenticate(this.loginForm.value.login, this.loginForm.value.password);
-    //console.log("logged in");
+    this._auth.authenticate(this.loginForm.value.email, this.loginForm.value.password);
   }
 
   public gotoRegister(): void {

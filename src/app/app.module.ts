@@ -15,6 +15,7 @@ import {HttpModule} from '@angular/http';
 import {AutoCompleteModule, ButtonModule, InputTextModule, PanelModule} from 'primeng/primeng';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/auth.service';
+import {SessionService} from "./services/session.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {AuthService} from './services/auth.service';
     MainModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

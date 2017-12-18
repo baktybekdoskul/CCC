@@ -17,7 +17,6 @@ export class SignupComponent implements OnInit {
               private _router: Router,
               private _auth: AuthService) {
     this.registerForm = this._fb.group({
-        id: ['', Validators.required],
         email: ['', Validators.required],
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],

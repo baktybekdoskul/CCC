@@ -1,50 +1,60 @@
 import { Injectable } from '@angular/core';
-import {Headers, Http, RequestOptions, Response} from "@angular/http";
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {IUser} from "../model_interfaces/IUser.interface";
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {IUser} from '../model_interfaces/IUser.interface';
+import {SessionService} from './session.service';
+import {SYS_ORIGIN} from '../constants/constants';
+import {isNullOrUndefined} from "util";
 
 
 @Injectable()
 export class AuthService {
+  private baseAuthUrl: string = SYS_ORIGIN;
+  registerUrl = this.baseAuthUrl + '/user/create';
+  private logoutUrl: string = this.baseAuthUrl + '/user/logout';
+  private signInUrl: string = this.baseAuthUrl + '/user/login';
   constructor(private http: Http,
               private router: Router,
-              private httpService: HttpClient) {
+              private httpService: HttpClient,
+              private sessionService: SessionService
+              ) {
   }
 
-  public checkSessionThenAuthenticate(login: string, key: string) {
-    /*this.http.get(this.checkSessionUrl).subscribe((r: Response) => {
-        if ( r.json() === false) {
-          this.authenticate(login, key);
-        } else if (r.json().email === login) {
-          this.router.navigate(['/home']);
-        } else {
-          console.log('something worng with login process');
+  public authenticate(email: string, key: string) {
+    const httpBody = {email: email, password: key};
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json' );
+    const options = new RequestOptions({headers: headers});
+    let user: IUser = {};
+    this.http.post(this.signInUrl, httpBody, options).subscribe((r: Response) =>
+        user.token = r.json().token, err => console.log('something went wrong during the authorization'),
+      () => {
+        if (user.token !== '' && !isNullOrUndefined(user.token)) {
+          user.email = email;
+          this.sessionService.createSession(user);
+          this.router.navigate(['/main']);
+        }else {
+          this.router.navigate(['/login']);
         }
-      },
-      err => console.log('something went wrong checking the session'));*/
-
-    console.log('login is:' + login);
-    console.log('password is:' + key);
+      }
+    );
   }
-
   public doRegister(user: IUser, password: string, passwordMatch: string) {
-    /*const httpBody = {id: student.id, email: student.email, firstname: student.firstname, lastname: student.lastname, password: password, passwordMatch: passwordMatch};
+    const httpBody = {email: user.email, name: user.firstname, surname: user.lastname,
+      password: password, confirmation: passwordMatch};
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'application/json' );
     const options = new RequestOptions({headers: headers});
     this.http.post(this.registerUrl, httpBody, options).subscribe((r: Response) => {
-        student = r.json() || {}; console.log(r.json()); }, err => console.log('something went wrong during the registratio'),
+        }, err => console.log('something went wrong during the registratio'),
       () => {
-        console.log(student);
-        if (student.email !== '' && student.email !=null) {
-          this.sessionService.createSession(student);
-          this.router.navigate(['/home']);
-        }else {
-          this.router.navigate(['/login']);
-        }
-      });*/
-    console.log("we are here with user details:" + user.firstname + '  ' + password + '   ' + passwordMatch);
+        this.authenticate(user.email, password);
+      });
+  }
+  public doLogout() {
+    this.sessionService.invalidate();
+    this.router.navigate(['/login']);
   }
 
 }
