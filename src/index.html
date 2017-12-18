@@ -36,26 +36,5 @@
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>
 
-  <script src="assets/js/func/mainfunc.js"></script>
-
-  <!-- Javascript for this page -->
-
-  <!-- Custom JS. Type your JS code in custom.js file -->
-  <script src="assets/js/custom.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-
-      getPosts(offset, blocksize, '#posts');
-      $('#sendNewPostRequest').click(function (e){
-        sendNewPostRequest();
-      });
-      window.onscroll = function(ev) {
-        console.log("onscroll()");
-        if ((window.innerHeight + window.scrollY) >= $('#posts').position().top + $('#posts').innerHeight()) {
-          getPosts(offset, blocksize);
-        }
-      };
-    });
-  </script>
 </body>
 </html>
