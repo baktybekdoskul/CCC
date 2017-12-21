@@ -9,11 +9,13 @@ import {CappersComponent} from "../cappers/cappers.component";
 import {MyProfileComponent} from "../my-profile/my-profile.component";
 import {MyProfileSettingsComponent} from "../my-profile-settings/my-profile-settings.component";
 import {LoginComponent} from "../../login/login.component";
+import {AuthGuard} from '../../auth.guard';
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'records', component: RecordsComponent},
       { path: 'blogs', component: BlogsComponent},

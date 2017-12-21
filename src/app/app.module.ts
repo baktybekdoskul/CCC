@@ -16,6 +16,7 @@ import {AutoCompleteModule, ButtonModule, InputTextModule, PanelModule} from 'pr
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/auth.service';
 import {SessionService} from "./services/session.service";
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {SessionService} from "./services/session.service";
     MainModule,
     AppRoutingModule
   ],
-  providers: [AuthService,SessionService],
+  providers: [AuthService, SessionService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
