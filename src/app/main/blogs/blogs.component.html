@@ -1,37 +1,249 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <div *ngFor="let post of posts">
-        <div class="blog-one-item">
-          <!-- blog One Img -->
-          <div class="blog-one-img">
-            <!-- Image -->
 
-            <div *ngIf="post.imgurl">
-              <a href="#"><img src="post.imgurl" alt="" class="img-responsive img-thumbnail" /></a>
-            </div>
-            <div *ngIf="!post.imgurl">
-              <a href="#"><img src="/assets/img/user/unknown.png" alt="" class="img-responsive img-thumbnail" /></a>
-            </div>
+  </div>
+</div>
+<div class="container">
+  <div class="blog-one">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+          <div *ngFor="let post of posts">
+            <div class="blog-one-item">
+              <!-- blog One Img -->
+              <div class="blog-one-img">
+                <!-- Image -->
 
-          </div>
-          <!-- blog One Content -->
-          <div class="blog-one-content">
-            <!-- Heading -->
-            <h3><a href="#">{{post.name}} {{post.surname}}</a></h3>
-            <p>{{post.content}}</p>
-            <div class="blog-meta">
-              <!-- Date -->
-              <a href="#"><i class="fa fa-calendar"></i> &nbsp; {{ post.date | date:'medium'}}</a> &nbsp;
+                <div *ngIf="post.imgurl">
+                  <a href="#"><img src="post.imgurl" alt="" class="img-responsive img-thumbnail" /></a>
+                </div>
+                <div *ngIf="!post.imgurl">
+                  <a href="#"><img src="/assets/img/user/unknown.png" alt="" class="img-responsive img-thumbnail" /></a>
+                </div>
 
-              <div class="pull-right">
-                <!--a (click)="like(post.id)"><i id="voteup<?=$post['id'];?>" class="fa fa-chevron-up <?php if ($post['voice'] == 1):?>voice-active<?php endif;?>"></i></a--> &nbsp;
-                <a (click)="like(post.id)"><i class="fa fa-chevron-up"></i></a> &nbsp;
-                <a (click)="dislike(post.id);"><i class="fa fa-chevron-down "></i></a> &nbsp;
-                <a id="rating">{{post.rating}}</a>
+              </div>
+              <!-- blog One Content -->
+              <div class="blog-one-content">
+                <!-- Heading -->
+                <h3><a href="#">{{post.name}} {{post.surname}}</a></h3>
+                <p>{{post.content}}</p>
+                <div class="blog-meta">
+                  <!-- Date -->
+                  <a href="#"><i class="fa fa-calendar"></i> &nbsp; {{ post.date | date:'medium'}}</a> &nbsp;
+
+                  <div class="pull-right">
+                    <!--a (click)="like(post.id)"><i id="voteup<?=$post['id'];?>" class="fa fa-chevron-up <?php if ($post['voice'] == 1):?>voice-active<?php endif;?>"></i></a--> &nbsp;
+                    <a (click)="like(post.id)"><i class="fa fa-chevron-up"></i></a> &nbsp;
+                    <a (click)="dislike(post.id);"><i class="fa fa-chevron-down "></i></a> &nbsp;
+                    <a id="rating">{{post.rating}}</a>
+                  </div>
+                </div>
+
               </div>
             </div>
+          </div>
+        </div>
+      <div class="col-md-3">
+        <div class="sidebar">
+          <div class="s-widget">
+            <h5><i class="fa fa-search color"></i>&nbsp; Поиск каппера</h5>
+            <div class="widget-content search">
+              <form role="form">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Введите имя">
+                  <span class="input-group-btn">
+					            <button class="btn btn-color" type="button">Искать</button>
+				            </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="s-widget">
+            <h5><i class="fa fa-user color"></i>&nbsp; Топ-капперы</h5>
+            <div class="widget-content categories">
+              <ul class="list-9">
+                <li><a href="#">Кайрат Токпаев</a></li>
+                <li><a href="#">Батырхан Орынкул</a></li>
+                <li><a href="#">Рамазан Султан</a></li>
+                <li><a href="#">Кайрат Токпаев</a></li>
+                <li><a href="#">Батырхан Орынкул</a></li>
+                <li><a href="#">Рамазан Султан</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="s-widget">
+            <h5><i class="fa fa-tags color"></i>&nbsp; Последние прогнозы</h5>
+            <div class="widget-content tabs">
+              <div class="nav-tabs-two">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#popular" data-toggle="tab">Популярные</a></li>
+                  <li><a href="#recent" data-toggle="tab">Ваши прогнозы</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="popular">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/1.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/2.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Temporibus autem quibusdam et aut officiis  aut rerum</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/3.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Voluptates repudiandae sint et molestiae non recusand</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/4.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-pane fade" id="recent">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/1.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/2.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Temporibus autem quibusdam et aut officiis  aut rerum</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/3.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Voluptates repudiandae sint et molestiae non recusand</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/4.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-pane fade" id="comments">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="assets/img/user/1.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <!-- Item image -->
+                          <img src="assets/img/user/2.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <!-- Item title -->
+                          <span>Temporibus autem quibusdam et aut officiis  aut rerum</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <!-- Item image -->
+                          <img src="assets/img/user/3.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <!-- Item title -->
+                          <span>Voluptates repudiandae sint et molestiae non recusand</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <!-- Item image -->
+                          <img src="assets/img/user/4.jpg" alt="" class="img-responsive img-thumbnail" />
+                          <!-- Item title -->
+                          <span>Neque porro quisquam estui dolorem ipsum quia dolor sit</span>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <!-- Tag Widget -->
+          <div class="s-widget">
+            <h5><i class="fa fa-tags color"></i>&nbsp; Тэги</h5>
+            <!-- Widgets Content -->
+            <div class="widget-content">
+              <a href="#" class="label label-color">футбол</a>
+              <a href="#" class="label label-color">жб</a>
+              <a href="#" class="label label-color">баскетбол</a>
+              <a href="#" class="label label-color">теннис</a>
+              <a href="#" class="label label-color">live</a>
+              <a href="#" class="label label-color">П1</a>
+              <a href="#" class="label label-color">фора</a>
+              <a href="#" class="label label-color">android</a>
+              <a href="#" class="label label-color">ios</a>
+              <a href="#" class="label label-color">chrome</a>
+              <a href="#" class="label label-color">development</a>
+              <a href="#" class="label label-color">plugin</a>
+              <a href="#" class="label label-color">personal</a>
+              <a href="#" class="label label-color">general</a>
+            </div>
+          </div>
+
+          <!-- Gallery Widget -->
+          <div class="s-widget">
+            <!-- Heading -->
+            <h5><i class="fa fa-photo color"></i>&nbsp; Gallery</h5>
+            <!-- Widgets Content -->
+            <div class="widget-content gallery">
+              <a href="assets/img/gallery/small/1.jpg" class="lightbox"><img src="assets/img/gallery/small/1.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+              <a href="assets/img/gallery/small/2.jpg" class="lightbox"><img src="assets/img/gallery/small/2.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+              <a href="assets/img/gallery/small/3.jpg" class="lightbox"><img src="assets/img/gallery/small/3.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+              <a href="assets/img/gallery/small/1.jpg" class="lightbox"><img src="assets/img/gallery/small/1.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+              <a href="assets/img/gallery/small/2.jpg" class="lightbox"><img src="assets/img/gallery/small/2.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+              <a href="assets/img/gallery/small/3.jpg" class="lightbox"><img src="assets/img/gallery/small/3.jpg" alt="" class="img-responsive img-thumbnail" /></a>
+            </div>
+          </div>
+
+          <!-- Social media widget -->
+          <div class="s-widget">
+            <h5><i class="fa fa-share color"></i>&nbsp; Social Media</h5>
+            <!-- Widgets Content -->
+            <div class="widget-content brand-bg">
+              <!-- Social Media Icons -->
+              <a href="#" class="facebook"><i class="fa fa-facebook square-3 rounded-1"></i></a>
+              <a href="#" class="twitter"><i class="fa fa-twitter square-3 rounded-1"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus square-3 rounded-1"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin square-3 rounded-1"></i></a>
+              <a href="#" class="pinterest"><i class="fa fa-pinterest square-3 rounded-1"></i></a>
+              <a href="#" class="dropbox"><i class="fa fa-dropbox square-3 rounded-1"></i></a>
+              <a href="#" class="foursquare"><i class="fa fa-foursquare square-3 rounded-1"></i></a>
+              <a href="#" class="flickr"><i class="fa fa-flickr square-3 rounded-1"></i></a>
+              <a href="#" class="github"><i class="fa fa-github square-3 rounded-1"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram square-3 rounded-1"></i></a>
+              <a href="#" class="skype"><i class="fa fa-skype square-3 rounded-1"></i></a>
+              <a href="#" class="tumblr"><i class="fa fa-tumblr square-3 rounded-1"></i></a>
+              <a href="#" class="dribbble"><i class="fa fa-dribbble square-3 rounded-1"></i></a>
+              <a href="#" class="youtube"><i class="fa fa-youtube square-3 rounded-1"></i></a>
+            </div>
           </div>
         </div>
       </div>
