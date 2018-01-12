@@ -5,11 +5,15 @@
     </div>
     <div class="col-md-8">
       <ul class="nav nav-pills padding-top-7">
-        <li class="active"><a class="no-padding" href="#">Все записи</a></li>
+        <!--li class="active"><a class="no-padding" href="#">Все записи</a></li>
         <li><a class="no-padding" href="#">Подписки</a></li>
-        <li><a class="no-padding" href="#">Популярные</a></li>
+        <li><a class="no-padding" href="#">Популярные</a></li-->
+        <li class="active"><a class="no-padding" routerLink="allNews">Все записи</a></li>
+        <li><a class="no-padding" routerLink="followed">Подписки</a></li>
+        <li><a class="no-padding" routerLink="popular">Популярные</a></li>
         <li><a data-toggle="collapse" data-target="#newPost" class="no-padding">Добавить запись</a></li>
       </ul>
+
       <div class="clearfix"></div>
     </div>
   </div>
@@ -39,6 +43,9 @@
 
         <div id="posts">
         </div>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <router-outlet></router-outlet>
       </div>
       <div class="col-md-3">
         <div class="sidebar">

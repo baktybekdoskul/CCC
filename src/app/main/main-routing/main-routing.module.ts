@@ -10,6 +10,9 @@ import {MyProfileComponent} from "../my-profile/my-profile.component";
 import {MyProfileSettingsComponent} from "../my-profile-settings/my-profile-settings.component";
 import {LoginComponent} from "../../login/login.component";
 import {AuthGuard} from '../../auth.guard';
+import {AllNewsComponent} from '../records/all-news/all-news.component';
+import {FollowedComponent} from '../records/followed/followed.component';
+import {PopularComponent} from '../records/popular/popular.component';
 
 const routes: Routes = [
   {
@@ -17,12 +20,21 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'records', component: RecordsComponent},
+      {
+        path: 'records',
+        component: RecordsComponent,
+        children: [
+          { path: 'allNews', component: AllNewsComponent},
+          {path: 'followed', component: FollowedComponent},
+          {path: 'popular', component: PopularComponent},
+          //{path: '', redirectTo: '/main/records/allNews', pathMatch: 'full'}
+        ]
+      },
       { path: 'blogs', component: BlogsComponent},
       { path: 'about', component: AboutComponent},
       { path: 'cappers', component: CappersComponent},
       { path: 'my-profile', component: MyProfileComponent},
-      { path: 'my-profile-settings', component: MyProfileSettingsComponent},
+      { path: 'my-profile-settings', component: MyProfileSettingsComponent}
     ]
   },
 

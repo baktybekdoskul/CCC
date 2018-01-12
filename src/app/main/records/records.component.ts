@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TabView} from 'primeng/primeng';
 
 @Component({
   selector: 'app-records',

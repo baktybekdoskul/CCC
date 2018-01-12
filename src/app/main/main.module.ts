@@ -5,17 +5,17 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main.component';
 import {FormsModule} from '@angular/forms';
 import {MainRoutingModule} from './main-routing/main-routing.module';
-import { RecordsComponent } from './records/records.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { AboutComponent } from './about/about.component';
 import { CappersComponent } from './cappers/cappers.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-settings.component';
+import {TabViewModule} from 'primeng/primeng';
+import {RecordsModule} from './records/records.module';
 
 @NgModule({
   declarations: [
     MainComponent,
-    RecordsComponent,
     BlogsComponent,
     AboutComponent,
     CappersComponent,
@@ -25,7 +25,9 @@ import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-set
   imports: [
     CommonModule,
     MainRoutingModule,
-    FormsModule
+    FormsModule,
+    TabViewModule,
+    RecordsModule
 
   ]
 })
