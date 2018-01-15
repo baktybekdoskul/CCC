@@ -1,3 +1,139 @@
-<p>
-  my-profile-settings works!
-</p>
+<div class="page-heading-two">
+  <div class="container">
+    <div class="col-md-offset-1">
+      <h2><?=$user->name;?> <?=$user->surname;?></h2>
+    </div>
+  </div>
+</div>
+<div class="blog-one">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div id="profile">
+        <div class="row">
+          <div class="ui-31 smart-forms">
+            <!--?php echo form_open('profile/settings', 'class="form-horizontal" role="form"');?-->
+            <form>
+              <div class="row">
+                <div class="form-group">
+                  <label for="name" class="col-md-3 control-label">Имя</label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="name" name="name"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group">
+                  <label for="surname" class="col-md-3 control-label">Фамилия</label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="surname" name="surname" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="gender" class="col-md-3 control-label">Пол</label>
+
+                  <div class="col-md-8">
+                    <select class="form-control" id="gender" name="gender" required>
+                      <option selected disabled>Не выбрано</option>
+                      <option value="M">Мужской</option>
+                      <option value="F">Женский</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="specialization" class="col-md-3 control-label">Специализация</label>
+                  <div class="col-md-8">
+                    <select class="form-control" id="specialization" name="specialization">
+                      <option selected disabled>Не выбрано</option>
+                      <option value="<?=$item['id'];?>"><?=$item['name_ru'];?></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="dob" class="col-md-3 control-label">Дата рождения</label>
+
+                  <div id = "dob">
+                    <p>here should be calendar input</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="country" class="col-md-3 control-label">Страна</label>
+
+                  <div class="col-md-8">
+                    <select class="form-control" id="country" name="country">
+                      <option selected disabled>Не выбрано</option>
+                      <p>here should be country list</p>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="city" class="col-md-3 control-label">Город</label>
+
+                  <div class="col-md-8">
+                    <select class="form-control" id="city" name="city">
+                      <option selected>Не выбрано</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="website" class="col-md-3 control-label">Веб-сайт</label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="website" name="website"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="instagram_link" class="col-md-3 control-label">Инстаграм</label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="instagram_link" name="instagram_link"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="vk_link" class="col-md-3 control-label">ВКонтакте</label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="vk_link" name="vk_link" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label for="fb_link" class="col-md-3 control-label">Фейсбук</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="fb_link" name="fb_link"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-md-offset-3">
+                    <button type="submit" class="btn btn-color">Сохранить</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

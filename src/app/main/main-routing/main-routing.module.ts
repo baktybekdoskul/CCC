@@ -34,7 +34,8 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent},
       { path: 'cappers', component: CappersComponent},
       { path: 'my-profile', component: MyProfileComponent},
-      { path: 'my-profile-settings', component: MyProfileSettingsComponent}
+      { path: 'my-profile-settings', component: MyProfileSettingsComponent},
+      {path: '', redirectTo: '/main/records', pathMatch: 'full'}
     ]
   },
 

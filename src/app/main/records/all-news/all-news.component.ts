@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cappers',
-  templateUrl: './cappers.component.html',
-  styleUrls: ['./cappers.component.css']
+  selector: 'app-all-news',
+  templateUrl: './all-news.component.html',
+  styleUrls: ['./all-news.component.css']
 })
-export class CappersComponent implements OnInit {
+export class AllNewsComponent implements OnInit {
   posts: any[] = [{
     imgurl: '',
     name: 'vasia',
