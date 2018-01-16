@@ -27,14 +27,14 @@
             <div class="form-horizontal">
               <div class="form-group">
                 <div class="col-sm-12">
-                  <textarea rows="3" class="form-control" name="post" id="post" placeholder="Поделитесь вашими прогнозами" required></textarea>
+                  <textarea rows="3" class="form-control" name="post" [(ngModel)]="content" id="post" placeholder="Поделитесь вашими прогнозами" required></textarea>
                   <p class="red" id="postErrorMsg"></p>
                   <p class="green hidden" id="postSuccessMsg">Ваш прогноз успешно опубликован!</p>
                 </div>
               </div>
               <div class="form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-12">
-                  <button id="sendNewPostRequest" class="btn btn-blue pull-right">Отправить</button>&nbsp;
+                  <button id="sendNewPostRequest" class="btn btn-blue pull-right" (click)="createPost(content)">Отправить</button>&nbsp;
                 </div>
               </div>
             </div>

@@ -13,6 +13,7 @@ import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-set
 import {TabViewModule} from 'primeng/primeng';
 import {RecordsModule} from './records/records.module';
 import {BlogService} from '../services/blog.service';
+import {PostService} from '../services/post.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,6 @@ import {BlogService} from '../services/blog.service';
     RecordsModule
 
   ],
-  providers: [BlogService]
+  providers: [PostService, BlogService]
 })
 export class MainModule {}

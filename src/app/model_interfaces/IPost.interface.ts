@@ -7,4 +7,9 @@ export interface IPost{
   authorId?: string;
   like?: Like;
   comments?: Comment[];
+  imgurl?: string;
+  name?: string;
+  surname?: string;
+  date?: Date;
+  rating?: number;
 }

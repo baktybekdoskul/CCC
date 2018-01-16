@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PostService} from '../../../services/post.service';
+import {IPost} from '../../../model_interfaces/IPost.interface';
 
 @Component({
   selector: 'app-all-news',
@@ -6,43 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-news.component.css']
 })
 export class AllNewsComponent implements OnInit {
-  posts: any[] = [{
-    imgurl: '',
-    name: 'vasia',
-    surname: 'pupkin',
-    content: 'barcelone must win real madrid on 23rd december',
-    date: new Date(2017, 12, 21, 16, 21),
-    id: 1,
-    rating: 2
-  },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 2,
-      rating: 2
-    },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 3,
-      rating: 2
-    },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 4,
-      rating: 2
-    }]
-  constructor() { }
+  posts: IPost[] = []
+  constructor(private postService: PostService) {
+    this.posts = this.postService.getAllPosts();
+  }
 
   ngOnInit() {
   }
@@ -51,5 +20,9 @@ export class AllNewsComponent implements OnInit {
   }
   dislike(postId: number) {
     this.posts[postId-1].rating--;
+  }
+
+  public deletePost(id: number): void {
+    this.postService.deletePost(id);
   }
 }
