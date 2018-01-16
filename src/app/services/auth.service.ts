@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {IUser} from '../model_interfaces/IUser.interface';
 import {SessionService} from './session.service';
 import {SYS_ORIGIN} from '../constants/constants';
-import {isNullOrUndefined} from "util";
+import {isNullOrUndefined} from 'util';
 
 
 @Injectable()
