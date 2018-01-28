@@ -1,4 +1,9 @@
+import {IPost} from './IPost.interface';
+import {IUser} from './IUser.interface';
+
 export interface Like {
-  liked: number;
-  disliked: number;
+  id?: number;
+  value?: number;
+  post?: number;
+  user?: number;
 }

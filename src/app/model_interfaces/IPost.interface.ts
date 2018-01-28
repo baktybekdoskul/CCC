@@ -1,15 +1,15 @@
 import {Like} from './like.interface';
+import {IUser} from './IUser.interface';
 
-export interface IPost{
+export interface IPost {
   id?: number;
   title?: string;
   content?: string;
-  authorId?: string;
-  like?: Like;
+  user?: IUser;
+  likes?: Like[];
   comments?: Comment[];
-  imgurl?: string;
   name?: string;
   surname?: string;
-  date?: Date;
+  createdAt?: Date;
   rating?: number;
 }

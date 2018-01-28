@@ -18,8 +18,8 @@ export class SignupComponent implements OnInit {
               private _auth: AuthService) {
     this.registerForm = this._fb.group({
         email: ['', Validators.required],
-        firstname: ['', Validators.required],
-        lastname: ['', Validators.required],
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
         password: ['', Validators.required],
         passwordMatch: ['', Validators.required]
       }
@@ -30,8 +30,8 @@ export class SignupComponent implements OnInit {
 
   }
   registerClick() {
-    this.newUser.firstname = this.registerForm.value.firstname;
-    this.newUser.lastname = this.registerForm.value.lastname;
+    this.newUser.name = this.registerForm.value.name;
+    this.newUser.surname = this.registerForm.value.surname;
     this.newUser.email = this.registerForm.value.email;
     this.newUser.id = this.registerForm.value.id;
     this._auth.doRegister(this.newUser, this.registerForm.value.password, this.registerForm.value.passwordMatch );

@@ -2,91 +2,41 @@ import {Injectable} from '@angular/core';
 import {SYS_ORIGIN} from '../constants/constants';
 import {SessionService} from './session.service';
 import {Router} from '@angular/router';
-import {Http} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
+import {BaseRequestOptions, Http, RequestOptions} from '@angular/http';
 import {IPost} from '../model_interfaces/IPost.interface';
+
+import {Like} from '../model_interfaces/like.interface';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Header} from 'primeng/primeng';
+import {SailsService} from 'angular2-sails';
 
 @Injectable()
 export class PostService {
-  allPosts: IPost[] = [{
-    imgurl: '',
-    name: 'vasia',
-    surname: 'pupkin',
-    content: 'barcelone must win real madrid on 23rd december',
-    date: new Date(2017, 12, 21, 16, 21),
-    id: 1,
-    rating: 2
-  },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 2,
-      rating: 2
-    },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 3,
-      rating: 2
-    },
-    {
-      imgurl: '',
-      name: 'vasia',
-      surname: 'pupkin',
-      content: 'barcelone must win real madrid on 23rd december',
-      date: new Date(2017, 12, 21, 16, 21),
-      id: 4,
-      rating: 2
-    }];
+  allPosts: IPost[] = [];
 
-  popular: IPost[] = [{
-    imgurl: '',
-    name: 'vasia',
-    surname: 'pupkin',
-    content: 'barcelone must win real madrid on 23rd december',
-    date: new Date(2017, 12, 21, 16, 21),
-    id: 4,
-    rating: 2
-  },
-    {
-    imgurl: '',
-    name: 'novas',
-    surname: 'moron',
-    content: 'some other content',
-    date: new Date(2017, 12, 21, 16, 21),
-    id: 3,
-    rating: 5
-  }];
-  followed: IPost[] = [{
-    imgurl: '',
-    name: 'followed',
-    surname: 'post',
-    content: 'jingle or jungle',
-    date: new Date(2017, 12, 21, 16, 21),
-    id: 3,
-    rating: 5
-  }];
+  popular: IPost[] = [];
+  followed: IPost[] = [];
   private basePath: string = SYS_ORIGIN;
   createNewPost = this.basePath + '/post/create';
   getAllPostsPath = this.basePath + '/post';
   editPost = this.basePath + '/post/edit';
   deletePostPath = this.basePath + '/post/delete';
-  likePostPath = this.basePath + '/post/like';
+  likePostPath = this.basePath + '/like';
+  deletePostLikePath = this.basePath + '/like';
   constructor(private http: Http,
               private router: Router,
-              private httpService: HttpClient
-  ) {
+              private httpClient: HttpClient,
+              private sessionService: SessionService,
+              private _sailsService: SailsService
+              )
+  {
+    this._sailsService.connect('http://localhost:1337');
   }
 
 
-  public getAllPosts(): IPost[] {
-    return this.allPosts;
+  public getAllPosts(): Observable<any> {
+    return this._sailsService.get(this.getAllPostsPath + '?token=' + this.sessionService.user.token).pipe();
   }
   public getPopular(): IPost[] {
     return this.popular;
@@ -104,7 +54,20 @@ export class PostService {
     console.log('deleted ' + id);
   }
 
-  public likePost(id: number): void {
-    console.log('liked post ' + id);
+   public likePost(like: Like): Observable<any> {
+    const httpBody = {
+      token : this.sessionService.user.token,
+      value : like.value,
+      id : like.post
+    };
+    return this._sailsService.post(this.likePostPath, httpBody).pipe();
+  }
+
+  public deletePostLike(id: number): Observable<any> {
+    const httpBody = {
+      token: this.sessionService.user.token
+    };
+    const delPath = this.deletePostLikePath + '/' + id.toString();
+    return this._sailsService.delete(delPath, httpBody).pipe();
   }
 }

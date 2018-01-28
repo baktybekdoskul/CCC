@@ -28,7 +28,7 @@ export class AuthService {
     const options = new RequestOptions({headers: headers});
     let user: IUser = {};
     this.http.post(this.signInUrl, httpBody, options).subscribe((r: Response) =>
-        user.token = r.json().token, err => console.log('something went wrong during the authorization'),
+      { user.token = r.json().token; user.id = r.json().user.id; } , err => console.log('something went wrong during the authorization'),
       () => {
         if (user.token !== '' && !isNullOrUndefined(user.token)) {
           user.email = email;
@@ -41,7 +41,7 @@ export class AuthService {
     );
   }
   public doRegister(user: IUser, password: string, passwordMatch: string) {
-    const httpBody = {email: user.email, name: user.firstname, surname: user.lastname,
+    const httpBody = {email: user.email, name: user.name, surname: user.surname,
       password: password, confirmation: passwordMatch};
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'application/json' );
@@ -59,7 +59,10 @@ export class AuthService {
     const options = new RequestOptions({headers: headers});
     console.log(httpBody);
     this.http.post(this.logoutUrl, httpBody, options).subscribe((r: Response) => {},
-      err => console.log('something went wrong during the logout'),
+      err => {console.log('something went wrong during the logout');
+           this.sessionService.invalidate();
+           this.router.navigate(['/login']);
+        },
       () => {
         this.sessionService.invalidate();
         this.router.navigate(['/login']);

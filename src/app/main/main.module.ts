@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 
 import {MainComponent} from './main.component';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 import {MainRoutingModule} from './main-routing/main-routing.module';
 import { BlogsComponent } from './blogs/blogs.component';
 import { AboutComponent } from './about/about.component';
@@ -14,6 +15,8 @@ import {TabViewModule} from 'primeng/primeng';
 import {RecordsModule} from './records/records.module';
 import {BlogService} from '../services/blog.service';
 import {PostService} from '../services/post.service';
+import {CappersService} from '../services/cappers.service';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +32,10 @@ import {PostService} from '../services/post.service';
     MainRoutingModule,
     FormsModule,
     TabViewModule,
-    RecordsModule
+    RecordsModule,
+    HttpClientModule
 
   ],
-  providers: [PostService, BlogService]
+  providers: [PostService, BlogService, CappersService]
 })
 export class MainModule {}
