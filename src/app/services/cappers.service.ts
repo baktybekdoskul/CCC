@@ -1,21 +1,19 @@
 import {Injectable} from '@angular/core';
-import {IUser} from '../model_interfaces/IUser.interface';
-import {IPost} from '../model_interfaces/IPost.interface';
 import {SYS_ORIGIN} from '../constants/constants';
-import {Http} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {SailsService} from 'angular2-sails';
+import {SessionService} from './session.service';
 
 @Injectable()
 export class CappersService {
-  res: IUser[] = [];
   private basePath = SYS_ORIGIN;
-  private getCappersListPath = this.basePath + '/user/getUsers';
-  constructor(private http: Http,
-              private httpClient: HttpClient) {
+  private getCappersListPath = this.basePath + '/user';
+  constructor(private sailsService: SailsService,
+          private sessionService: SessionService) {
     }
 
-  public getCappers(): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>(this.getCappersListPath);
+  public getCappers(): Observable<any> {
+    const path = this.getCappersListPath + '?token=' + this.sessionService.user.token;
+    return this.sailsService.get(path).pipe();
   }
 }

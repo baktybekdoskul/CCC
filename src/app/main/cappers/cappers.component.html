@@ -1,27 +1,42 @@
-
+<p-growl [(value)]="msgs"></p-growl>
 <div class="container">
   <div class="blog-one">
     <div class="row">
       <div class="col-md-7 col-md-offset-1">
-        <div *ngFor="let user of users">
-          <div class="blog-one-item">
-            <!-- blog One Img -->
-            <div class="blog-one-img">
-              <!-- Image -->
-                <a href="javascript:void(0)"><img src="/assets/img/user/unknown.png" alt="" class="img-responsive img-thumbnail" /></a>
-            </div>
-            <!-- blog One Content -->
-            <div class="blog-one-content">
-              <!-- Heading -->
-              <h3><a href="javascript:void(0)">{{user.name}} {{user.surname}}</a></h3>
-              <div class="blog-meta">
-                <!-- Date -->
-                <!--a href="#"><i class="fa fa-calendar"></i> &nbsp; {{ post.date | date:'medium'}}</a--> &nbsp;
-              </div>
+        <p-tabView>
+          <p-tabPanel header="All cappers">
+            <div *ngFor="let user of users">
+              <div class="blog-one-item">
+                <div class="blog-one-img">
+                  <a href="javascript:void(0)"><img src="/assets/img/user/unknown.png" alt="" class="img-responsive img-thumbnail" /></a>
+                </div>
+                <div class="blog-one-content">
+                  <h3><a href="javascript:void(0)">{{user.name}} {{user.surname}}</a></h3>
+                  <div class="blog-meta">
+                     &nbsp;
+                  </div>
 
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </p-tabPanel>
+          <p-tabPanel header="Followed">
+            <div *ngFor="let user of followedUsers">
+              <div class="blog-one-item">
+                <div class="blog-one-img">
+                  <a href="javascript:void(0)"><img src="/assets/img/user/unknown.png" alt="" class="img-responsive img-thumbnail" /></a>
+                </div>
+                <div class="blog-one-content">
+                  <h3><a href="javascript:void(0)">{{user.name}} {{user.surname}}</a></h3>
+                  <div class="blog-meta">
+                    &nbsp;
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
       </div>
       <div class="col-md-3">
         <div class="sidebar">

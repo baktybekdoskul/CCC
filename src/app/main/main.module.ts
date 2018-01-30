@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
 
 import {MainComponent} from './main.component';
 import {FormsModule} from '@angular/forms';
@@ -11,11 +10,11 @@ import { AboutComponent } from './about/about.component';
 import { CappersComponent } from './cappers/cappers.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-settings.component';
-import {TabViewModule} from 'primeng/primeng';
+import {GrowlModule, TabViewModule} from 'primeng/primeng';
 import {RecordsModule} from './records/records.module';
 import {BlogService} from '../services/blog.service';
 import {PostService} from '../services/post.service';
-import {CappersService} from '../services/cappers.service';
+import {CappersModule} from './cappers/cappers.module';
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import {CappersService} from '../services/cappers.service';
     MainComponent,
     BlogsComponent,
     AboutComponent,
-    CappersComponent,
     MyProfileComponent,
     MyProfileSettingsComponent
   ],
@@ -33,9 +31,9 @@ import {CappersService} from '../services/cappers.service';
     FormsModule,
     TabViewModule,
     RecordsModule,
+    CappersModule,
     HttpClientModule
-
   ],
-  providers: [PostService, BlogService, CappersService]
+  providers: [PostService, BlogService]
 })
 export class MainModule {}

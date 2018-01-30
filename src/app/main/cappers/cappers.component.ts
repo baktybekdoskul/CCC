@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CappersService} from '../../services/cappers.service';
 import {IUser} from '../../model_interfaces/IUser.interface';
+import {Message} from 'primeng/primeng';
 
 @Component({
   selector: 'app-cappers',
@@ -8,16 +9,20 @@ import {IUser} from '../../model_interfaces/IUser.interface';
   styleUrls: ['./cappers.component.css']
 })
 export class CappersComponent implements OnInit {
-  users: IUser[];
+  users: IUser[] = [];
+  followedUsers: IUser[] = [];
+  msgs: Message[] = [];
   constructor(private cappersService: CappersService) { }
 
   ngOnInit() {
-    this.cappersService.getCappers().subscribe((res: IUser[]) => this.users = res);
+    this.cappersService.getCappers().subscribe((res) => {
+      this.users = res.data; },
+      err => this.showErrorMessage(err));
   }
-  /*like(postId: number) {
-    this.posts[postId-1].rating++;
+  showErrorMessage(err) {
+    if ( err.statusCode === 401) {
+      this.msgs = [];
+      this.msgs.push({severity: 'error', summary: 'Your session has expired!', detail: 'please logout and login again'});
+    }
   }
-  dislike(postId: number) {
-    this.posts[postId-1].rating--;
-  }*/
 }

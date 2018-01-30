@@ -18,7 +18,7 @@ import {AuthService} from './services/auth.service';
 import {SessionService} from './services/session.service';
 import {AuthGuard} from './auth.guard';
 // import {SocketIoConfig, SocketIoModule} from 'ng-socket-io';
-import {SailsModule} from 'angular2-sails';
+import {SailsModule, SailsService} from 'angular2-sails';
 
  // const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
@@ -50,4 +50,9 @@ import {SailsModule} from 'angular2-sails';
   providers: [AuthService, SessionService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private _sailsService: SailsService) {
+    this._sailsService.connect('http://localhost:1337');
+  }
+
+}

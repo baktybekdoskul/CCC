@@ -33,7 +33,7 @@ export class PostService {
               private _sailsService: SailsService
               )
   {
-    this._sailsService.connect('http://localhost:1337');
+
   }
 
 

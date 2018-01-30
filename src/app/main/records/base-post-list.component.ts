@@ -4,7 +4,7 @@ import {Message} from 'primeng/primeng';
 import {PostService} from '../../services/post.service';
 import {Like} from '../../model_interfaces/like.interface';
 import {SessionService} from '../../services/session.service';
-import {isNullOrUndefined} from "util";
+import {isNullOrUndefined} from 'util';
 
 export abstract class BasePostListComponent implements OnInit {
   posts: IPost[] = [];
@@ -49,37 +49,39 @@ export abstract class BasePostListComponent implements OnInit {
       user: this._sessionService.user.id
     };
     if (post.likes.length !== 0) {
-
-      for (let like of post.likes) {
-
-        if ( like.value === value && likes.user === like.user) {
-          this.msgs = [];
-          let msg = 'You have already ';
-          if (value === 1) {
-            msg += 'liked!';
-          }else {
-            msg += 'disliked!';
-          }
-          this.msgs = [];
-          this.msgs.push({severity: 'warn', summary: msg, detail: ''});
-        } else if (like.user === likes.user ) {
-          like.value = -1 * like.value;
-          this._postService.deletePostLike(like.id).subscribe((res) => null,
-            err => {if (err.statusCode === 401) {
-              this.msgs = [];
-              this.msgs.push({severity: 'error', summary: 'Your session has expired!', detail: 'please logout and login again'});
-            }},
-            () => this.likePost(likes));
-
-        } else {
-          this.likePost(likes);
+      const like = this.getUsersLike(post, likes.user);
+      if (isNullOrUndefined(like)) {
+        this.likePost(likes);
+      }else if ( like.value === value) {
+        this.msgs = [];
+        let msg = 'You have already ';
+        if (value === 1) {
+          msg += 'liked!';
+        }else {
+          msg += 'disliked!';
         }
+        this.msgs = [];
+        this.msgs.push({severity: 'warn', summary: msg, detail: ''});
+      } else  {
+        like.value = -1 * like.value;
+        this._postService.deletePostLike(like.id).subscribe((res) => null,
+          err => {
+            this.showErrorMessage(err);
+          },
+          () => this.likePost(likes));
       }
     }else {
       this.likePost(likes);
     }
   }
-
+  getUsersLike(post: IPost, userId: number): Like {
+    for (let like of post.likes) {
+      if (like.user === userId) {
+        return like;
+      }
+    }
+    return null;
+  }
   likePost(likes: Like) {
     this._postService.likePost(likes).subscribe((res: any) => null,
       err => console.log('something went wrong during the liking post'),
