@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {PostService} from '../../../services/post.service';
+import {BasePostListComponent} from '../base-post-list.component';
 
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
   styleUrls: ['./popular.component.css']
 })
-export class PopularComponent implements OnInit {
-  posts: any[] = []
-  constructor(private postService: PostService) { }
+export class PopularComponent extends BasePostListComponent implements OnInit {
+  constructor(private __injector: Injector
+  ) {
+    super(__injector, 'allPosts');
+  }
 
   ngOnInit() {
-    this.posts = this.postService.getPopular();
-  }
-  like(postId: number) {
-    this.posts[postId-1].rating++;
-  }
-  dislike(postId: number) {
-    this.posts[postId-1].rating--;
+    super.ngOnInit();
+    this.getPostList();
   }
 }

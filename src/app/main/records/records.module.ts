@@ -7,7 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { FollowedComponent } from './followed/followed.component';
 import { PopularComponent } from './popular/popular.component';
 import {RouterModule} from '@angular/router';
-import {GrowlModule} from 'primeng/primeng';
+import {GrowlModule, InputTextModule} from 'primeng/primeng';
+import {BasePostListComponent} from './base-post-list.component';
 
 
 @NgModule({  declarations: [
@@ -20,6 +21,7 @@ import {GrowlModule} from 'primeng/primeng';
           RouterModule,
           FormsModule,
           HttpClientModule,
+          InputTextModule,
           GrowlModule]
 })
 export class RecordsModule {

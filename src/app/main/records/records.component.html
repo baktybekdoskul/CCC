@@ -27,6 +27,11 @@
             <div class="form-horizontal">
               <div class="form-group">
                 <div class="col-sm-12">
+                  <span class="ui-float-label">
+                    <input id="float-input" [(ngModel)]="title" type="text" size="30" pInputText>
+                    <label for="float-input" style="padding-left: 5px">Title</label>
+                  </span>
+                  <br/>
                   <textarea rows="3" class="form-control" name="post" [(ngModel)]="content" id="post" placeholder="Поделитесь вашими прогнозами" required></textarea>
                   <p class="red" id="postErrorMsg"></p>
                   <p class="green hidden" id="postSuccessMsg">Ваш прогноз успешно опубликован!</p>
@@ -34,14 +39,11 @@
               </div>
               <div class="form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-12">
-                  <button id="sendNewPostRequest" class="btn btn-blue pull-right" (click)="createPost(content)">Отправить</button>&nbsp;
+                  <button id="sendNewPostRequest" data-toggle="collapse" data-target="#newPost" class="btn btn-blue pull-right" (click)="createPost(title,content)">Отправить</button>&nbsp;
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div id="posts">
         </div>
       </div>
       <div class="col-md-7 col-md-offset-1">

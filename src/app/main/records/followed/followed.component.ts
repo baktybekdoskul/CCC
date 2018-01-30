@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {PostService} from '../../../services/post.service';
+import {BasePostListComponent} from '../base-post-list.component';
 
 @Component({
   selector: 'app-followed',
   templateUrl: './followed.component.html',
   styleUrls: ['./followed.component.css']
 })
-export class FollowedComponent implements OnInit {
-  posts: any[] = [];
-  constructor(private postService: PostService) {
-
+export class FollowedComponent extends BasePostListComponent implements OnInit {
+  constructor(private __injector: Injector
+  ) {
+    super(__injector, 'allPosts');
   }
 
   ngOnInit() {
-    this.posts = this.postService.getFollowed();
+    super.ngOnInit();
+    this.getPostList();
   }
-  like(postId: number) {
-    this.posts[postId-1].rating++;
-  }
-  dislike(postId: number) {
-    this.posts[postId-1].rating--;
-  }
+
 }

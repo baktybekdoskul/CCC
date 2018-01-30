@@ -12,4 +12,6 @@ export interface IPost {
   surname?: string;
   createdAt?: Date;
   rating?: number;
+  imgurl?: string;
+  active?: boolean;
 }
