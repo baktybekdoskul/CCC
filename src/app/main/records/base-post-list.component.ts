@@ -22,18 +22,21 @@ export abstract class BasePostListComponent implements OnInit {
 
   getPostList(typeOfPost?: string): void {
     if (this.componentName === 'allPosts' || typeOfPost === 'allPosts') {
+      console.log('allPosts');
       this._postService.getAllPosts().subscribe(
         (res) => {this.posts = res.data; },
         err => {
             this.showErrorMessage(err);
           } );
     }else if (this.componentName === 'followed' || typeOfPost === 'followed') {
+      console.log('followed');
       this._postService.getFollowed().subscribe(
         (res) => {this.posts = res.data; },
         err => {
           this.showErrorMessage(err);
         } );
     }else if (this.componentName === 'popular' || typeOfPost === 'popular') {
+      console.log('popular');
       this._postService.getPopular().subscribe(
         (res) => {this.posts = res.data; },
         err => {

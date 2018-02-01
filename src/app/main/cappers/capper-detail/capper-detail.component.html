@@ -1,3 +1,187 @@
-<p>
-  capper-detail works!
-</p>
+<div id="image_upload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <p-growl [value]="msgs"></p-growl>
+
+      <h3 class="first">Advanced</h3>
+      <p-fileUpload name="demo[]"  (onUpload)="onUpload($event)"
+                    accept="image/*" maxFileSize="1000000000">
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+  </div>
+</div>
+<div class="main-block">
+  <div class="page-heading-two">
+    <div class="container">
+      <div class="col-md-offset-1">
+        <h2>{{user.name}} {{user.surname}}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="blog-one">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div id="profile">
+        <div class="row">
+          <div class="ui-31">
+            <div class="col-md-5" style="padding-left:0;padding-right:0;padding-top:40px;">
+              <div class="team">
+                <div class="team-member">
+                  <div class="img-container">
+                    <!-- image -->
+                    <img *ngIf="hasImage(user.imgUrl)" class="img-responsive" src="/files/uploads/" alt="here should be user image" />
+                    <img class="img-responsive" src="/assets/img/user/unknown.png" alt="" />
+                  </div>
+                  <!-- Name -->
+                  <br>
+                  <div class="image_upload" style="text-align:center;">
+                    <button class="btn btn-color" data-toggle="modal" data-target="#image_upload">Обновить фото</button>
+                  </div>
+                  <br>
+                  <div class="image_upload" style="text-align:center;">
+                    <button *ngIf="!isSameUser(user.id)&&hasFollowed()" class="btn btn-color" (click)="unFollowCapper(user.id)">Отписаться</button>
+                    <button *ngIf="!isSameUser(user.id)&&!hasFollowed()" class="btn btn-color" (click)="followCapper(user.id)">Подписаться</button>
+                  </div>
+                  <br>
+                  <!-- Social links -->
+                  <div class="social">
+                    <a class="facebook" *ngIf="user.facebookLink" href="{{user.facebookLink}}"><i class="fa fa-facebook"></i></a>
+                    <a class="instagram" *ngIf="user.instagramLink" href="{{user.instagramLink}}"><i class="fa fa-instagram"></i></a>
+                    <a class="vk" *ngIf="user.vkLink" href="{{user.vkLink}}"><i class="fa fa-vk"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="team">
+                <div class="team-member">
+                  <div class="member-dtls">
+                    <ul class="list-unstyled">
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.gender" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-female"></i> Пол</h3>
+                          <span class="pull-right minfo">Мужской</span>
+                          <span class="pull-right minfo">Женский</span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.dOfB" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-calendar"></i> День рождения</h3>
+                          <span class="pull-right minfo">{{user.dOfB}}}</span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.country" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-bank"></i> Страна</h3>
+                          <span class="pull-right minfo">{{user.country}}}</span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.city" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-map-marker"></i> Город</h3>
+                          <span class="pull-right minfo">{{user.city}}</span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.phone" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-phone"></i> Телефон</h3>
+                          <span class="pull-right minfo">{{user.phone}}</span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <!-- Member details list item -->
+                        <div *ngIf="user.email" class="list-item">
+                          <h3 class="pull-left"><i class="fa fa-envelope"></i> Email</h3>
+                          <span class="pull-right "><a href="javascript:void(0)">{{user.email}}</a></span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="nav nav-tabs" style="padding-top:30px;">
+          <li class="active"><a data-toggle="tab" href="#home">Мои записи</a></li>
+          <li><a data-toggle="tab" href="#menu1">Статистика</a></li>
+          <li><a data-toggle="tab" href="#menu2">Избранные</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="home" class="tab-pane fade in active">
+            <div id="posts"></div>
+          </div>
+          <div id="menu1" class="tab-pane fade">
+            <div class="ui-21">
+              <div class="container">
+                <!-- Heading -->
+                <h3>Изменения рейтинга</h3>
+                <!-- Plot Chart -->
+                <div class="plot-chart"></div>
+                <div class="chart-bottom">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      <div class="chart-knob">
+                        <!-- Knob -->
+                        <input class="knob" data-angleOffset=-180 data-angleArc=360 data-bgColor="#e5e5e5" data-fgColor="#f75353" data-thickness=".04" value="0" data-end="90">
+                        <!-- Heading -->
+                        <h4>Export</h4>
+                        <!-- Numbers with icon -->
+                        <span class="num">60&#37; <i class="fa fa-arrow-up red"></i> &nbsp;30&#37; <i class="fa fa-arrow-down green"></i></span>
+
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <div class="chart-knob">
+                        <!-- Knob -->
+                        <input class="knob" data-angleOffset=-180 data-angleArc=360 data-bgColor="#e5e5e5" data-fgColor="#51d466" data-thickness=".04" value="0" data-end="80">
+                        <!-- Heading -->
+                        <h4>Import</h4>
+                        <!-- Numbers with icon -->
+                        <span class="num">50&#37; <i class="fa fa-arrow-up red"></i> &nbsp;30&#37; <i class="fa fa-arrow-down green"></i></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <div class="chart-knob">
+                        <!-- Knob -->
+                        <input class="knob" data-angleOffset=-180 data-angleArc=360 data-bgColor="#e5e5e5" data-fgColor="#609cec" data-thickness=".04" value="0" data-end="70">
+                        <!-- Heading -->
+                        <h4>Average</h4>
+                        <!-- Numbers with icon -->
+                        <span class="num">35&#37; <i class="fa fa-arrow-up red"></i> &nbsp;35&#37; <i class="fa fa-arrow-down green"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="menu2" class="tab-pane fade">
+            <h3>Избранные</h3>
+            <p>Some content in menu 2.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

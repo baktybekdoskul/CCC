@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CappersService} from '../../services/cappers.service';
 import {IUser} from '../../model_interfaces/IUser.interface';
 import {Message} from 'primeng/primeng';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cappers',
@@ -12,7 +13,8 @@ export class CappersComponent implements OnInit {
   users: IUser[] = [];
   followedUsers: IUser[] = [];
   msgs: Message[] = [];
-  constructor(private cappersService: CappersService) { }
+  constructor(private cappersService: CappersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.cappersService.getCappers().subscribe((res) => {
@@ -24,5 +26,9 @@ export class CappersComponent implements OnInit {
       this.msgs = [];
       this.msgs.push({severity: 'error', summary: 'Your session has expired!', detail: 'please logout and login again'});
     }
+  }
+
+  goToCapperDetail(id: number) {
+    this.router.navigate(['/main/capper/' + id.toString() ]);
   }
 }

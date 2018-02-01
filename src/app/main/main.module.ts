@@ -10,11 +10,12 @@ import { AboutComponent } from './about/about.component';
 import { CappersComponent } from './cappers/cappers.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyProfileSettingsComponent } from './my-profile-settings/my-profile-settings.component';
-import {GrowlModule, TabViewModule} from 'primeng/primeng';
+import {FileUploadModule, GrowlModule, TabViewModule} from 'primeng/primeng';
 import {RecordsModule} from './records/records.module';
 import {BlogService} from '../services/blog.service';
 import {PostService} from '../services/post.service';
 import {CappersModule} from './cappers/cappers.module';
+import {ActivatedRouteSnapshot, RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -30,6 +31,8 @@ import {CappersModule} from './cappers/cappers.module';
     MainRoutingModule,
     FormsModule,
     TabViewModule,
+    RouterModule,
+    FileUploadModule,
     RecordsModule,
     CappersModule,
     HttpClientModule

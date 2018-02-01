@@ -20,7 +20,7 @@ export class PostService {
   private basePath: string = SYS_ORIGIN;
   createNewPost = this.basePath + '/post/create';
   getAllPostsPath = this.basePath + '/post';
-  getFollowedPostsPath = this.basePath + '/post/followed';
+  getFollowedPostsPath = this.basePath + '/post/getFollowedPosts';
   getPopularPostsPath = this.basePath + '/post/popular';
   editPost = this.basePath + '/post/edit';
   deletePostPath = this.basePath + '/post';
@@ -41,22 +41,20 @@ export class PostService {
     return this._sailsService.get(this.getAllPostsPath + '?token=' + this.sessionService.user.token).pipe();
   }
   public getPopular(): Observable<any> {
-    // should be changed to this.getPopularPostsPath
-    return this._sailsService.get(this.getAllPostsPath + '?token=' + this.sessionService.user.token).pipe();
+    return this._sailsService.get(this.getAllPostsPath + '?order=rating ASC&token=' + this.sessionService.user.token).pipe();
   }
 
   public getFollowed(): Observable<any> {
-    // should be changed to this.getPopularPostsPath
-    return this._sailsService.get(this.getAllPostsPath + '?token=' + this.sessionService.user.token).pipe();
+    return this._sailsService.get(this.getFollowedPostsPath + '?token=' + this.sessionService.user.token).pipe();
   }
 
-  public createPost(titleM: string, contentM: string): void {
+  public createPost(titleM: string, contentM: string): Observable<any> {
     const httpBody = {
         token: this.sessionService.user.token,
         title: titleM,
         content: contentM
     };
-    this._sailsService.post(this.createNewPost, httpBody).subscribe();
+    return this._sailsService.post(this.createNewPost, httpBody).pipe();
   }
 
   public deletePost(id: number): Observable<any>{

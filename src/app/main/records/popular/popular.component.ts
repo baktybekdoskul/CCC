@@ -10,7 +10,7 @@ import {BasePostListComponent} from '../base-post-list.component';
 export class PopularComponent extends BasePostListComponent implements OnInit {
   constructor(private __injector: Injector
   ) {
-    super(__injector, 'allPosts');
+    super(__injector, 'popular');
   }
 
   ngOnInit() {
