@@ -28,7 +28,7 @@ export class AuthService {
     const options = new RequestOptions({headers: headers});
     let user: IUser = {};
     this.http.post(this.signInUrl, httpBody, options).subscribe((r: Response) =>
-      { user.token = r.json().token; user.id = r.json().user.id; } , err => console.log('something went wrong during the authorization'),
+      { user = r.json().user; user.token = r.json().token;  } , err => console.log('something went wrong during the authorization'),
       () => {
         if (user.token !== '' && !isNullOrUndefined(user.token)) {
           user.email = email;

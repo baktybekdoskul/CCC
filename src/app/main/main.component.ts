@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   username: string;
   constructor(private authService: AuthService,
               private sessionService: SessionService) {
-    this.username = this.sessionService.user.email;
+    this.username = this.sessionService.user.name + ' ' + this.sessionService.user.surname;
   }
   ngOnInit() {
   }
